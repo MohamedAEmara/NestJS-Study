@@ -1,8 +1,8 @@
 import { Controller, Get, HttpCode, Post, Header, Redirect, Query, Param, Body } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { CreateCatDto } from '../dto/create-car.dto';
-import { CarsService } from '../services/cats.service';
-import { Car } from '../interfaces/cars.interface';
+import { CreateCatDto } from './dto/create-car.dto';
+import { CarsService } from './cats.service';
+import { Car } from './interfaces/cars.interface';
 
 
 @Controller('cars')

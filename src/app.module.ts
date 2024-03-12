@@ -2,14 +2,14 @@ import { Module } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CarsController } from './cars/controllers/cars.controller';
+import { CarsController } from './cars/cars.controller';
 import * as express from 'express';
-import { CarsService } from './cars/services/cats.service';
+import { CarsService } from './cars/cats.service';
 
 @Module({
   imports: [],
   controllers: [AppController, CarsController],
-  providers: [AppService, CarsService
+  providers: [AppService, CarsService,
     {
       provide: ExpressAdapter,
       useClass: ExpressAdapter,

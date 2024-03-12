@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Car } from "../interfaces/cars.interface";
+import { Car } from "./interfaces/cars.interface";
 
 
 @Injectable()
