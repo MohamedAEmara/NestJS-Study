@@ -1,8 +1,6 @@
-import { Module } from "@nestjs/common";
-
+import { Module } from '@nestjs/common';
 
 @Module({
-   // Empty for now...  
+  // Empty for now...
 })
-
 export class CommonModule {}

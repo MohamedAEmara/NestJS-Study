@@ -1,5 +1,5 @@
 export class CreateCatDto {
-    model: string;
-    year: number;
-    color: string;
+  model: string;
+  year: number;
+  color: string;
 }

@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
 export function logger(req: Request, res: Response, next: NextFunction) {
-    console.log('in logger functional middleware...');
-    next();
+  console.log('in logger functional middleware...');
+  next();
 }
