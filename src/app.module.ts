@@ -7,6 +7,7 @@ import * as express from 'express';
 import { CarsService } from './cars/cats.service';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { CarsLoggerMiddleware } from './common/middleware/carslogger.middleware';
+import { logger } from './common/middleware/logger2.middleware';
 
 @Module({
   imports: [],
@@ -40,5 +41,11 @@ export class AppModule implements NestModule {
         'cars/(.*)',
       )
       .forRoutes(CarsController);
+
+
+    // Use functional middleware for all routes...
+    consumer
+      .apply(logger)
+      .forRoutes('*');
   }
 }
