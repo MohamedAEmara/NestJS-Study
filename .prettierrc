@@ -1,9 +1,4 @@
 {
   "singleQuote": true,
-  "trailingComma": "all",
-  "overrides": [
-    {
-      "tabWidth": 2
-    }
-  ]
+  "trailingComma": "all"
 }
