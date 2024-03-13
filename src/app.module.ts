@@ -47,5 +47,10 @@ export class AppModule implements NestModule {
     consumer
       .apply(logger)
       .forRoutes('*');
+  
+  
+      
+    // Multiple middlewares:
+    consumer.apply(logger, LoggerMiddleware).forRoutes(CarsController);
   }
 }
