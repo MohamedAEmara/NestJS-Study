@@ -11,7 +11,7 @@ import {
   ForbiddenException,
   UseFilters,
   Catch,
-  ParseIntPipe,
+  // ParseIntPipe,
   HttpStatus,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-car.dto';
@@ -19,7 +19,7 @@ import { CarsService } from './cats.service';
 import { Car } from './interfaces/cars.interface';
 import { HttpsExceptionFilter } from 'src/common/exceptions/http-exception.filter';
 import { ValidationPipe } from 'src/common/pipes/validation.pipe';
-
+import { ParseIntPipe } from 'src/common/pipes/pase-int.pipe';
 // In order to catch unhandled exception (regardless the exception type), Leave @Catch() decorator's parameter list empty like this:
 @Catch()
 @Controller('cars')
@@ -62,21 +62,24 @@ export class CarsController {
   @Get(':id')
   // We use ParseIntPipe to ensure that the value of "id" is integer
   // Otherwise an exception will be thrown.
-  findOne(@Param('id', ParseIntPipe) id: number): string {
-    console.log(id);
-    return `ID: ${id}`;
-  }
+  // findOne(@Param('id', ParseIntPipe) id: number): string {
+  //   console.log(id);
+  //   return `ID: ${id}`;
+  // }
 
   // We can also specify the statusCode in the error object like this:
   /*
-  findOne(
-    @Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }))
-    id: number
-  ) {
+    findOne(
+      @Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }))
+      id: number
+    ) {
+      return this.carsService.findAll();
+    }
+  */
+
+  findOne(@Param('id', new ParseIntPipe()) id) {
     return this.carsService.findAll();
   }
-*/
-
   // Use Redirect
   @Get('redirect')
   @Redirect('https://docs.nestjs.com', 200)
