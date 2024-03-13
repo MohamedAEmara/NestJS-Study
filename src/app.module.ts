@@ -12,6 +12,8 @@ import { CarsService } from './cars/cats.service';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { CarsLoggerMiddleware } from './common/middleware/carslogger.middleware';
 import { logger } from './common/middleware/logger2.middleware';
+import { APP_PIPE } from '@nestjs/core';
+import { ValidationPipe } from './common/pipes/validation.pipe';
 
 @Module({
   imports: [],
@@ -22,6 +24,10 @@ import { logger } from './common/middleware/logger2.middleware';
     {
       provide: ExpressAdapter,
       useClass: ExpressAdapter,
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
     },
   ],
 })

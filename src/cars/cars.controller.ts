@@ -18,6 +18,7 @@ import { CreateCatDto } from './dto/create-car.dto';
 import { CarsService } from './cats.service';
 import { Car } from './interfaces/cars.interface';
 import { HttpsExceptionFilter } from 'src/common/exceptions/http-exception.filter';
+import { ValidationPipe } from 'src/common/pipes/validation.pipe';
 
 // In order to catch unhandled exception (regardless the exception type), Leave @Catch() decorator's parameter list empty like this:
 @Catch()
@@ -51,7 +52,7 @@ export class CarsController {
   // NOTE: now this exception filter is only applied on Create method.
   // To use this filter on all /cars, you can use if before (EXPORT) at the top of the module..
   @Header('Cashe-Control', 'none')
-  async create(@Body() createCatDto: CreateCatDto) {
+  async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
     this.carsService.create(createCatDto);
     // return 'this actions adds a new car';
     return createCatDto;
@@ -67,7 +68,7 @@ export class CarsController {
   }
 
   // We can also specify the statusCode in the error object like this:
-/*
+  /*
   findOne(
     @Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }))
     id: number
