@@ -13,6 +13,8 @@ import {
   Catch,
   // ParseIntPipe,
   HttpStatus,
+  DefaultValuePipe,
+  ParseBoolPipe,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-car.dto';
 import { CarsService } from './cats.service';
@@ -76,7 +78,6 @@ export class CarsController {
       return this.carsService.findAll();
     }
   */
-
   findOne(@Param('id', new ParseIntPipe()) id) {
     return this.carsService.findAll();
   }
@@ -89,6 +90,14 @@ export class CarsController {
     }
   }
 
+  @Get('all/:id')
+  async findAlll(
+    @Query('activeOnly', new DefaultValuePipe(false), ParseBoolPipe)
+    activeOnly: boolean,
+    @Query('page', new DefaultValuePipe(0), ParseIntPipe) page: number,
+  ) {
+    return this.carsService.findAll();
+  }
   // @Get('github-redirect')
   // @Redirect('https://github.com/mohamedaemara', 200)
 }
