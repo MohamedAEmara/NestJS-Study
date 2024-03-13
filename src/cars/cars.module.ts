@@ -1,8 +1,10 @@
-import { Module } from "@nestjs/common";
+import { Module, Global } from "@nestjs/common";
 import { CarsController } from "./cars.controller";
 import { CarsService } from "./cats.service";
 import { CommonModule } from "src/common/common.module";
 
+// You can make a moduel (Global) to use it everywhere else "WITHOUT IMPORTING THE MODULE"..
+@Global()
 @Module({
     controllers: [CarsController],
     providers: [CarsService],
