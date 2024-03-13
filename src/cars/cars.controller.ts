@@ -11,6 +11,8 @@ import {
   ForbiddenException,
   UseFilters,
   Catch,
+  ParseIntPipe,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-car.dto';
 import { CarsService } from './cats.service';
@@ -57,10 +59,22 @@ export class CarsController {
 
   // Use variable parameter..
   @Get(':id')
-  findOne(@Param() params: any): string {
-    console.log(params.id);
-    return `ID: ${params.id}`;
+  // We use ParseIntPipe to ensure that the value of "id" is integer
+  // Otherwise an exception will be thrown.
+  findOne(@Param('id', ParseIntPipe) id: number): string {
+    console.log(id);
+    return `ID: ${id}`;
   }
+
+  // We can also specify the statusCode in the error object like this:
+/*
+  findOne(
+    @Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }))
+    id: number
+  ) {
+    return this.carsService.findAll();
+  }
+*/
 
   // Use Redirect
   @Get('redirect')
