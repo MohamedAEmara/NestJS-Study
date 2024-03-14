@@ -15,6 +15,7 @@ import {
   HttpStatus,
   DefaultValuePipe,
   ParseBoolPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-car.dto';
 import { CarsService } from './cats.service';
@@ -22,9 +23,11 @@ import { Car } from './interfaces/cars.interface';
 import { HttpsExceptionFilter } from 'src/common/exceptions/http-exception.filter';
 import { ValidationPipe } from 'src/common/pipes/validation.pipe';
 import { ParseIntPipe } from 'src/common/pipes/pase-int.pipe';
+import { RolesGuard } from 'src/auth/roles.guard';
 // In order to catch unhandled exception (regardless the exception type), Leave @Catch() decorator's parameter list empty like this:
 @Catch()
 @Controller('cars')
+@UseGuards(RolesGuard) // Here's how we apply RolesGuard on a controller.
 @UseFilters(new HttpsExceptionFilter()) // Now this filter will be applied on all controllers from cars-controller.
 export class CarsController {
   constructor(private carsService: CarsService) {}
